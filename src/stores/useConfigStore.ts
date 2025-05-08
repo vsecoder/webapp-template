@@ -5,6 +5,7 @@ interface ConfigStore {
   language: string;
   setPrefix: (prefix: string) => Promise<boolean>;
   setLanguage: (language: string) => Promise<boolean>;
+  parseSettings: () => void;
 }
 
 export const useConfigStore = create<ConfigStore>((set) => ({
@@ -13,7 +14,7 @@ export const useConfigStore = create<ConfigStore>((set) => ({
   
   setPrefix: async (prefix) => {
     try {
-      const response = await fetch('/api/prefix', {
+      const response = await fetch('https://giant-waves-sing.loca.lt/api/prefix', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,7 +37,7 @@ export const useConfigStore = create<ConfigStore>((set) => ({
 
   setLanguage: async (language) => {
     try {
-      const response = await fetch('/api/lang', {
+      const response = await fetch('https://giant-waves-sing.loca.lt/api/lang', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -56,4 +57,16 @@ export const useConfigStore = create<ConfigStore>((set) => ({
       return false;
     }
   },
+
+  parseSettings: async () => {
+    try {
+      const response = await fetch('https://giant-waves-sing.loca.lt/api/');
+      const data = await response.json();
+      if (response.ok && data.ok) {
+        set({ prefix: data.prefix, language: data.lang });
+      }
+    } catch (error) {
+      console.error('Ошибка при парсинге настроек:', error);
+    }
+  }
 }));

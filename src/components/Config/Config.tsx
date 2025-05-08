@@ -8,7 +8,15 @@ import {
 import { useConfigStore } from '../../stores/useConfigStore';
 
 export const Config = () => {
-  const { prefix, language, setPrefix, setLanguage } = useConfigStore();
+  const { prefix, language, setPrefix, setLanguage, parseSettings } = useConfigStore();
+
+  React.useEffect(() => {
+    const fetchSettings = async () => {
+      await parseSettings();
+    };
+
+    fetchSettings();
+  }, [parseSettings]);
 
   return (
     <List>

@@ -46,7 +46,7 @@ export const useRegisterStore = create<RegisterStore>((set, get) => ({
       const formData = new FormData();
       formData.append('token', get().token);
 
-      const res = await fetch('/submit', {
+      const res = await fetch('https://giant-waves-sing.loca.lt/submit', {
         method: 'POST',
         body: formData,
       });

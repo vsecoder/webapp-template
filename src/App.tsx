@@ -3,21 +3,21 @@ import { AppRoot, Tabbar } from '@telegram-apps/telegram-ui';
 import { Store } from './components/Store/Store';
 import { Steps } from './components/Steps/Steps';
 import { Config } from './components/Config/Config';
-import { NotInTelegramWarning } from './components/NotInTelegramWarning/NotInTelegramWarning';
-import { getTelegramData } from '@telegram-apps/telegram-ui/dist/helpers/telegram';
+//import { NotInTelegramWarning } from './components/NotInTelegramWarning/NotInTelegramWarning';
+//import { getTelegramData } from '@telegram-apps/telegram-ui/dist/helpers/telegram';
 import { Settings, ShoppingBag } from 'lucide-react';
 import { useAppStore } from './stores/useAppStore';
 
 export const App = () => {
   const { stage, tab, setStage, setTab, checkInitialization } = useAppStore();
-  const telegramData = getTelegramData();
+  //const telegramData = getTelegramData();
   React.useEffect(() => {
     checkInitialization();
   }, [checkInitialization]);
 
-  if (!telegramData?.initData) {
-    return <NotInTelegramWarning />;
-  }
+  // if (!telegramData?.initData) {
+  //   return <NotInTelegramWarning />;
+  // }
 
   if (stage === 'register') {
     return <Steps onComplete={() => setStage('app')} />;

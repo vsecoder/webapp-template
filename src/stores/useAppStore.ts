@@ -18,7 +18,7 @@ export const useAppStore = create<AppState>((set) => ({
   setTab: (tab) => set({ tab }),
   checkInitialization: async () => {
     try {
-      const res = await fetch('/api/status');
+      const res = await fetch('https://giant-waves-sing.loca.lt/api/status');
       const data = await res.json();
 
       if (data.initialized) {
