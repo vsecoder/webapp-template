@@ -1,37 +1,22 @@
 import styles from './TimelineSection.module.css';
-import { Section, Timeline } from '@telegram-apps/telegram-ui';
+import { Timeline } from '@telegram-apps/telegram-ui';
 
-const TIMELINE_ITEMS = [
-  {
-    header: 'Arrived',
-    description: 'Yesterday',
-  },
-  {
-    header: 'Departed',
-    description: 'Today',
-  },
-  {
-    header: 'In transit',
-    description: 'Tomorrow',
-  },
-  {
-    header: 'Processed to delivery center',
-    description: 'Next week',
-  },
-  {
-    header: 'Shipped',
-    description: 'Someday',
-  },
-];
+interface TimelineItem {
+  header: string;
+  description: string;
+}
 
-export const TimelineSection = () => (
-  <Section header="Timeline">
-    <Timeline className={styles.timeline} active={2}>
-      {TIMELINE_ITEMS.map((item, index) => (
-        <Timeline.Item key={index} header={item.header}>
-          {item.description}
-        </Timeline.Item>
-      ))}
-    </Timeline>
-  </Section>
+interface TimelineSectionProps {
+  items: TimelineItem[];
+  active: number;
+}
+
+export const TimelineSection = ({ items = [], active = 0 }: TimelineSectionProps) => (
+  <Timeline className={styles.timeline} active={active}>
+    {items.map((item, index) => (
+      <Timeline.Item key={index} header={item.header}>
+        {item.description}
+      </Timeline.Item>
+    ))}
+  </Timeline>
 );

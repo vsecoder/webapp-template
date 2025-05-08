@@ -14,8 +14,10 @@
   },
   "dependencies": {
     "@telegram-apps/telegram-ui": "2.1.6",
+    "lucide-react": "^0.507.0",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "zustand": "^5.0.4"
   },
   "scripts": {
     "start": "react-scripts start",
